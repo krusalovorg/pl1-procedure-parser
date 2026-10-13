@@ -9,7 +9,12 @@
 # TEST: PROCEDURE(A) RETURNS(CHARACTER(20));
 # TEST: PROCEDURE(A, B);
 
-PROGRAM_WORDS = ["PROCUDRE", "RETURNS", "INT", "FLOAT", "BIN", "FIXED", "CHARACTER"]
+PROGRAM_WORDS = [
+    "PROCEDURE",
+    "RETURNS",
+    "FLOAT",
+    "CHARACTER"
+]
 
 def skip_spaces(line: str, pos: int) -> int:
     while pos < len(line) and line[pos].isspace():
@@ -137,6 +142,12 @@ def parse_line(line: str):
     print("Имя:", name)
     print("Параметры:", arguments)
     print("Тип:", return_type)
+    return {
+        "name": name.upper(),
+        "kind": "function" if return_type else "procedure",
+        "type": return_type,
+        "arguments": arguments
+    }
 
 def main(code: str):
     parse_line(code)
