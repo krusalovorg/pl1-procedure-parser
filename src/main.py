@@ -113,7 +113,7 @@ def parse_attribute(line: str, pos: int) -> tuple[str, int]:
         if not 1 <= number <= 256:
             raise ParserError(
                 "Семантическая",
-                pos,
+                start,
                 f"константа вне диапазона 1–256"
             )
         pos = expect(line, pos, ")")
